@@ -10,10 +10,6 @@ $db = $database->getConnection();
 
 $subscriber = new Subscriber($db);
 $results = $subscriber->getById($_GET["id"]);
-if ($results == null) {
-    echo '{"message:":"Nothing found!"}';
-    return;
-}
 
 $row = $results->fetch(PDO::FETCH_ASSOC);
 extract($row);

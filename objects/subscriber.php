@@ -29,11 +29,7 @@ class Subscriber
     }
     
     public function getById($id)
-    {
-        if (!is_numeric($id)) {
-            return null;
-        }
-            
+    {           
         $query = "SELECT " .
                  "  id, " .
                  "  email_address, " .
