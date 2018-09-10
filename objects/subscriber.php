@@ -48,6 +48,11 @@ class Subscriber
         return $this->createOrUpdate(true);
     }
     
+    public function update()
+    {
+        return $this->createOrUpdate(false, $this->id);
+    }
+    
     public function getStateText($state)
     {
         switch ($state) {
@@ -65,7 +70,7 @@ class Subscriber
         return checkdnsrr($domain, "MX");
     }
     
-    private function createOrUpdate($isForCreate)
+    private function createOrUpdate($isForCreate, $idToUpdate)
     {
         $command = "";
         if ($isForCreate) {
@@ -79,7 +84,12 @@ class Subscriber
         if ($this->name != null) {
            $query = $query . "  name = :name, ";
         }
-        $query = $query . "  state = :state;";
+        $query = $query . "  state = :state";
+        if ($isForCreate) {
+            $query = $query . ";";
+        } else {
+            $query = $query . "    WHERE id = " . $idToUpdate . ";";
+        }
         $statement = $this->conn->prepare($query);
         
         //Sanitise name and email_address
