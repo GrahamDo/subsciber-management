@@ -18,9 +18,9 @@ $arr["records"] = array();
 // http://stackoverflow.com/questions/2770630/pdofetchall-vs-pdofetch-in-a-loop
 // GD: I'm not sure exactly what this means, or if it's actually valid in the
 //     version of PHP I'm using, but I found this in a tutorial.
-while ($row = $results->fetch(PDO::FETCH_ASSOC)) {   
+while ($row = $results->fetch(PDO::FETCH_ASSOC)) {
     extract($row);
-    
+
     $item = array(
         "id" => $id,
         "title" => $title,

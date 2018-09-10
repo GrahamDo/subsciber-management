@@ -19,7 +19,6 @@ if (!is_numeric($passed_type) || $passed_type < 0 || $passed_type > 3) {
     return;
 }
 
-
 $field->subscriber_id = $passed_subscriber_id;
 $field->title = $passed_title;
 $field->type = $passed_type;
