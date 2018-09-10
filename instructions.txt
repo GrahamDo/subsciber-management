@@ -43,3 +43,11 @@ Subscribers
 							 is expected on querystring. This is the id
 							 of the subscriber to update (returns an
 							 error if not found)
+							 
+Fields
+------
+	/field/list_by_subscriber_id.php - Returns a list of fields for the 
+									   subscriber specified in the id 
+									   parameter on the querystring. If
+									   there is no such subscriber, nothing
+									   is returned
