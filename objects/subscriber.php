@@ -31,8 +31,7 @@ class Subscriber
     public function getById($id)
     {
         if (!is_numeric($id)) {
-            echo "Subscriber.getById: id must be a number";
-            return;
+            return null;
         }
             
         $query = "SELECT " .
