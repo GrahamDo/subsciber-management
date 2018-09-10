@@ -8,6 +8,7 @@ include_once '../objects/subscriber.php';
 $database = new Database();
 $db = $database->getConnection();
 
+//TODO Once we have fields, remember to delete all fields first
 $subscriber = new Subscriber($db);
 $subscriber->deleteById($_GET["id"]);
 
