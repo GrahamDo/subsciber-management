@@ -43,13 +43,45 @@ class Subscriber
         return $statement;
     }
     
+    public function create()
+    {
+        $query = "INSERT INTO subscriber " .
+                 "SET " .
+                 "  email_address = :email_address, ";
+        if ($this->name != null) {
+           $query = $query . "  name = :name, ";
+        }
+        $query = $query . "  state = :state;";
+        $statement = $this->conn->prepare($query);
+        
+        //Sanitise name and email_address
+        $this->email_address = 
+            htmlspecialchars(strip_tags($this->email_address));
+        $this->name = htmlspecialchars(strip_tags($this->name));
+        
+        $statement->bindParam(":email_address", $this->email_address);
+        if ($this->name != null) {
+            $statement->bindParam(":name", $this->name);
+        }
+        $statement->bindParam(":state", $this->state);
+        
+        return $statement->execute();
+    }
+    
     public function getStateText($state)
     {
         switch ($state) {
-            case 0: return "active";
-            case 1: return "unsubscribed";
-            case 2: return "junk";
-            case 3: return "bounced";
+            case 0: return "unconfirmed";
+            case 1: return "active";
+            case 2: return "unsubscribed";
+            case 3: return "junk";
+            case 4: return "bounced";
         }
-    }    
+    } 
+
+    public function doesEmailDomainExist($email_address)
+    {
+        list($user, $domain) = explode("@", $email_address);
+        return checkdnsrr($domain, "MX");
+    }
 }
