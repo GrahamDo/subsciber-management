@@ -32,7 +32,7 @@ Subscribers
 								* email_address: Must be a valid e-mail
 									address, and the domain must exist
 								* name (OPTIONAL)
-								* state: must be a number, one of the \
+								* state: must be a number, one of the 
 									following:
 										* 0 - Unconfirmed
 										* 1 - Active
