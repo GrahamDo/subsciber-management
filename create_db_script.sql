@@ -15,6 +15,7 @@ CREATE TABLE `subscriber` (
 CREATE TABLE `field` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `subscriber_id` int(11) NOT NULL,
+  `title` varchar(45) NOT NULL,
   `type` tinyint(2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
