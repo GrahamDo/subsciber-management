@@ -1,6 +1,11 @@
 SETUP
 =====
 
+Make sure you have a web server and PHP installed/configured on your machine
+(no additional libraries needed)
+
+Make sure you have MySQL installed and configured on your machine
+
 Execute the script "create_db_script.sql" located in the root of the project
 
 Create a file called db_config.php in your config/ folder, and paste in the 
