@@ -45,7 +45,35 @@ class Subscriber
     
     public function create()
     {
-        $query = "INSERT INTO subscriber " .
+        return $this->createOrUpdate(true);
+    }
+    
+    public function getStateText($state)
+    {
+        switch ($state) {
+            case 0: return "unconfirmed";
+            case 1: return "active";
+            case 2: return "unsubscribed";
+            case 3: return "junk";
+            case 4: return "bounced";
+        }
+    } 
+
+    public function doesEmailDomainExist($email_address)
+    {
+        list($user, $domain) = explode("@", $email_address);
+        return checkdnsrr($domain, "MX");
+    }
+    
+    private function createOrUpdate($isForCreate)
+    {
+        $command = "";
+        if ($isForCreate) {
+            $command = "INSERT INTO";
+        } else {
+            $command = "UPDATE";
+        }
+        $query = $command . " subscriber " .
                  "SET " .
                  "  email_address = :email_address, ";
         if ($this->name != null) {
@@ -66,22 +94,5 @@ class Subscriber
         $statement->bindParam(":state", $this->state);
         
         return $statement->execute();
-    }
-    
-    public function getStateText($state)
-    {
-        switch ($state) {
-            case 0: return "unconfirmed";
-            case 1: return "active";
-            case 2: return "unsubscribed";
-            case 3: return "junk";
-            case 4: return "bounced";
-        }
-    } 
-
-    public function doesEmailDomainExist($email_address)
-    {
-        list($user, $domain) = explode("@", $email_address);
-        return checkdnsrr($domain, "MX");
     }
 }
