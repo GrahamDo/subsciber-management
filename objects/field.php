@@ -49,7 +49,12 @@ class Field
 
         $statement = $this->conn->prepare($query);
         $statement->execute();        
-    }    
+    }
+
+    public function create()
+    {
+        return $this->createOrUpdate(true);
+    }   
     
     public function getTypeText($type)
     {
@@ -60,4 +65,35 @@ class Field
             case 3: return "boolean";
         }
     }
+    
+    private function createOrUpdate($isForCreate, $idToUpdate)
+    {
+        $command = "";
+        if ($isForCreate) {
+            $command = "INSERT INTO";
+        } else {
+            $command = "UPDATE";
+        }
+        $query = $command . " field " .
+                 "SET " .
+                 "  subscriber_id = :subscriber_id, " .
+                 "  title = :title, " .
+                 "  type = :type";
+        if ($isForCreate) {
+            $query = $query . ";";
+        } else {
+            $query = $query . "    WHERE id = " . $idToUpdate . ";";
+        }
+        $statement = $this->conn->prepare($query);
+        
+        //Sanitise title
+        $this->title = 
+            htmlspecialchars(strip_tags($this->title));
+        
+        $statement->bindParam(":subscriber_id", $this->subscriber_id);
+        $statement->bindParam(":title", $this->title);
+        $statement->bindParam(":type", $this->type);
+        
+        return $statement->execute();
+    }        
 }

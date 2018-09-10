@@ -56,4 +56,16 @@ Fields
 	/field/delete_by_id.php - Expects an id on querystring. Deletes the 
 						      field with that id (returns an error if not 
 							  found)
-									   
+	/field/create.php - Expects the following parameters on querystring:
+							* subscriber_id: will not validate; the field
+								will simply fail to add if the subscriber
+								doesn't exist
+							* title: will not validate; the field will 
+								simply fail to add if this isn't passed
+							* type: must be a number, one of the 
+								following:
+									* 0 - date
+									* 1 - number
+									* 2 - string
+									* 3 - boolen
+								   
