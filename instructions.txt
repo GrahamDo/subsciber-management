@@ -51,3 +51,6 @@ Fields
 									   parameter on the querystring. If
 									   there is no such subscriber, nothing
 									   is returned
+	/field/get_by_id.php - Expects an id on querystring. Returns the field
+						   with that id (returns an error if not found)
+									   

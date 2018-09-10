@@ -27,6 +27,21 @@ class Field
         return $statement;
     }
     
+    public function getById($id)
+    {           
+        $query = "SELECT " .
+                 "  id, " .
+                 "  subscriber_id, " .
+                 "  title, " .
+                 "  type " .
+                 "FROM field " .
+                 "WHERE id = " . $id;
+
+        $statement = $this->conn->prepare($query);
+        $statement->execute();
+        return $statement;
+    }    
+    
     public function getTypeText($type)
     {
         switch ($type) {
