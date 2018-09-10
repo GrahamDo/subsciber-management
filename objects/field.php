@@ -54,7 +54,12 @@ class Field
     public function create()
     {
         return $this->createOrUpdate(true);
-    }   
+    } 
+
+    public function update()
+    {
+        return $this->createOrUpdate(false, $this->id);
+    }    
     
     public function getTypeText($type)
     {

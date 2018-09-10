@@ -61,11 +61,16 @@ Fields
 								will simply fail to add if the subscriber
 								doesn't exist
 							* title: will not validate; the field will 
-								simply fail to add if this isn't passed
+								simply fail to add if there is already a
+								field with the given title for that 
+								subscriber
 							* type: must be a number, one of the 
 								following:
 									* 0 - date
 									* 1 - number
 									* 2 - string
 									* 3 - boolen
+	/field/update.php - As above, except an additional parameter, id is 
+						expected on querystring. This is the id of the 
+						field to update (returns an error if not found)
 								   
