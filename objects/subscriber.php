@@ -28,6 +28,26 @@ class Subscriber
         return $statement;
     }
     
+    public function getById($id)
+    {
+        if (!is_numeric($id)) {
+            echo "Subscriber.getById: id must be a number";
+            return;
+        }
+            
+        $query = "SELECT " .
+                 "  id, " .
+                 "  email_address, " .
+                 "  name, " .
+                 "  state " .
+                 "FROM subscriber " .
+                 "WHERE id = " . $id;
+
+        $statement = $this->conn->prepare($query);
+        $statement->execute();
+        return $statement;
+    }
+    
     public function getStateText($state)
     {
         switch ($state) {
