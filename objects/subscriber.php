@@ -43,6 +43,15 @@ class Subscriber
         return $statement;
     }
     
+    public function deleteById($id)
+    {
+        $query = "DELETE FROM subscriber " .
+                 "WHERE id = " . $id;
+
+        $statement = $this->conn->prepare($query);
+        $statement->execute();        
+    }
+    
     public function create()
     {
         return $this->createOrUpdate(true);
