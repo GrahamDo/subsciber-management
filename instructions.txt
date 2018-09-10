@@ -1,0 +1,11 @@
+Create a file called db_config.php in your config/ folder, and paste in the 
+following code:
+
+<?php
+class DbConfig
+{
+    public $host = "<your_host_name>";
+    public $db_name = "subscriber_management";
+    public $username = "<your_username>";
+    public $password = "<your_password>";
+}
