@@ -40,6 +40,15 @@ class Field
         $statement = $this->conn->prepare($query);
         $statement->execute();
         return $statement;
+    }
+    
+    public function deleteById($id)
+    {
+        $query = "DELETE FROM field " .
+                 "WHERE id = " . $id;
+
+        $statement = $this->conn->prepare($query);
+        $statement->execute();        
     }    
     
     public function getTypeText($type)
