@@ -9,6 +9,16 @@ $database = new Database();
 $db = $database->getConnection();
 
 $subscriber = new Subscriber($db);
+$passed_id = $_GET["id"];
+$results = $subscriber->getById($passed_id);
+
+$row = $results->fetch(PDO::FETCH_ASSOC);
+extract($row);
+if ($id == null) {
+    echo '{"message:":"Nothing to delete!"}';
+    return;
+}
+
 $subscriber->deleteById($_GET["id"]);
 
 echo '{"message:":"Done"}';
