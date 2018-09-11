@@ -6,7 +6,8 @@ Make sure you have a web server and PHP installed/configured on your machine
 
 Make sure you have MySQL installed and configured on your machine
 
-Execute the script "create_db_script.sql" located in the root of the project
+Create a database on your server. The switch to that database, and execute the
+script "create_db_script.sql" located in the root of the project
 
 Create a file called db_config.php in your config/ folder, and paste in the 
 following code:
@@ -15,7 +16,7 @@ following code:
 class DbConfig
 {
     public $host = "<your_host_name>";
-    public $db_name = "subscriber_management";
+    public $db_name = "<your_database_name>";
     public $username = "<your_username>";
     public $password = "<your_password>";
 }

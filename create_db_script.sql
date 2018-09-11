@@ -1,6 +1,3 @@
-CREATE DATABASE `subscriber_management` 
-	/*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
-
 CREATE TABLE `subscriber` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email_address` varchar(320) NOT NULL,
